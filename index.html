@@ -230,17 +230,21 @@
       .hero h1{font-size:32px}.hero-desc{margin:0 auto 28px}.hero-actions{justify-content:center}
       .hero-visual{display:none}
       .stats-grid{grid-template-columns:repeat(2,1fr);gap:20px}
-      .products-grid,.benefits-grid,.stores-grid{grid-template-columns:1fr}
-      .products-grid{max-width:380px;margin:0 auto}
+      .products-grid,.benefits-grid{grid-template-columns:repeat(2,1fr)}
+      .stores-grid{grid-template-columns:1fr}
+      .products-grid{max-width:100%}
       .steps-grid{grid-template-columns:repeat(2,1fr)}.steps-grid::before{display:none}
       .order-grid{grid-template-columns:1fr}.order-info{text-align:center}.check-list{align-items:center}
-      .footer-grid{grid-template-columns:1fr;text-align:center}.footer-socials{justify-content:center}
+      .footer-grid{grid-template-columns:repeat(2,1fr)}.footer-socials{justify-content:center}
       .footer-bottom{flex-direction:column;gap:6px;text-align:center}
       .field-row{grid-template-columns:1fr}.section{padding:64px 0}
     }
     @media(max-width:480px){
       .hero h1{font-size:28px}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}
       .steps-grid{grid-template-columns:1fr}
+      .products-grid,.benefits-grid{grid-template-columns:1fr}
+      .products-grid{max-width:380px;margin:0 auto}
+      .footer-grid{grid-template-columns:1fr;text-align:center}
     }
   </style>
 </head>
