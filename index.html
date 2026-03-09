@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Акватель — Доставка воды в Тюмени</title>
+  <meta name="description" content="Доставка натуральной питьевой воды в Тюмени. 19л бутыли, кулеры, помпы. 5 магазинов. Звоните: (3452) 27-88-77">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary:#3B82F6;--primary-dark:#2563EB;--primary-light:#60A5FA;
+      --secondary:#06B6D4;--cta:#F97316;--cta-hover:#EA580C;
+      --bg:#F8FAFC;--white:#FFFFFF;
+      --text:#1E293B;--text-2:#475569;--text-3:#64748B;--text-4:#94A3B8;
+      --border:#E2E8F0;--border-light:#F1F5F9;
+      --r-sm:8px;--r:12px;--r-lg:16px;--r-xl:24px;
+      --shadow:0 4px 16px rgba(0,0,0,.06);--shadow-lg:0 12px 32px rgba(0,0,0,.08);
+      --shadow-xl:0 20px 48px rgba(0,0,0,.12);
+      --glass:rgba(255,255,255,.6);--glass-b:rgba(255,255,255,.3);
+      --t:200ms ease;--t-slow:400ms cubic-bezier(.4,0,.2,1)
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* HEADER */
+    .header{position:fixed;top:16px;left:16px;right:16px;z-index:1000;background:var(--glass);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid var(--glass-b);border-radius:var(--r-lg);transition:var(--t-slow)}
+    .header.scrolled{box-shadow:var(--shadow-lg);background:rgba(255,255,255,.88)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 24px;max-width:1200px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+    .logo img{height:40px;width:auto}
+    .logo-type{font-size:20px;font-weight:800;letter-spacing:-.5px;color:var(--text)}
+    .logo-type span{color:var(--primary)}
+    .nav{display:flex;align-items:center;gap:6px}
+    .nav a{padding:8px 14px;font-size:14px;font-weight:500;color:var(--text-2);border-radius:var(--r-sm);transition:var(--t);cursor:pointer}
+    .nav a:hover{color:var(--primary);background:rgba(59,130,246,.06)}
+    .header-right{display:flex;align-items:center;gap:12px}
+    .header-phone{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:var(--t)}
+    .header-phone:hover{color:var(--primary)}
+    .header-phone svg{color:var(--primary)}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 24px;border-radius:var(--r-sm);font-size:14px;font-weight:600;border:none;cursor:pointer;transition:var(--t);white-space:nowrap}
+    .btn:active{transform:scale(.97)}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(59,130,246,.3)}
+    .btn-primary:hover{background:var(--primary-dark);box-shadow:0 4px 16px rgba(59,130,246,.4);transform:translateY(-1px)}
+    .btn-cta{background:var(--cta);color:#fff;box-shadow:0 2px 8px rgba(249,115,22,.3)}
+    .btn-cta:hover{background:var(--cta-hover);box-shadow:0 4px 16px rgba(249,115,22,.4);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+    .btn-outline:hover{border-color:var(--primary-light);color:var(--primary);background:rgba(59,130,246,.04)}
+    .btn-ghost{background:rgba(255,255,255,.9);color:var(--primary-dark);box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+    .btn-ghost:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+    .btn-lg{padding:14px 32px;font-size:15px;border-radius:var(--r)}
+    .btn-full{width:100%}
+
+    .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;border-radius:var(--r-sm)}
+    .burger:hover{background:rgba(0,0,0,.04)}
+    .burger span{display:block;width:20px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;transition:var(--t)}
+
+    /* HERO */
+    .hero{padding:140px 0 80px;background:linear-gradient(170deg,#EFF6FF 0%,var(--bg) 40%,#F0F9FF 80%,var(--bg) 100%);position:relative;overflow:hidden}
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
+    .hero-orb.o1{width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%);top:-100px;right:-100px}
+    .hero-orb.o2{width:400px;height:400px;background:radial-gradient(circle,rgba(6,182,212,.1),transparent 70%);bottom:-50px;left:-50px}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(59,130,246,.08);color:var(--primary-dark);border-radius:100px;font-size:13px;font-weight:600;margin-bottom:20px;border:1px solid rgba(59,130,246,.12)}
+    .hero h1{font-size:48px;font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:18px}
+    .hero h1 .g{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-desc{font-size:17px;color:var(--text-3);margin-bottom:32px;max-width:440px;line-height:1.7}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-visual{display:flex;justify-content:center;align-items:center;position:relative;min-height:420px}
+    .hero-ring{position:absolute;width:340px;height:340px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(6,182,212,.06));top:50%;left:50%;transform:translate(-50%,-50%)}
+    .hero-ring::before{content:'';position:absolute;inset:-24px;border-radius:50%;border:1.5px dashed rgba(59,130,246,.12);animation:rot 40s linear infinite}
+    @keyframes rot{to{transform:rotate(360deg)}}
+    .hero-bottle{position:relative;z-index:2}
+    .hero-bottle img{height:360px;width:auto;filter:drop-shadow(0 24px 48px rgba(59,130,246,.18));object-fit:contain}
+    .glass-card{position:absolute;background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--glass-b);border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);z-index:3;animation:fl 4s ease-in-out infinite}
+    .glass-card.gc1{top:12%;right:-8%;animation-delay:0s}
+    .glass-card.gc2{bottom:16%;left:-8%;animation-delay:2s}
+    @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .gc-i{width:36px;height:36px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .gc-i.blue{background:rgba(59,130,246,.1);color:var(--primary)}
+    .gc-i.green{background:rgba(34,197,94,.1);color:#16A34A}
+    .gc-t{font-size:13px;font-weight:600;color:var(--text);line-height:1.3}
+    .gc-t small{display:block;font-weight:400;color:var(--text-4);font-size:11px}
+
+    /* STATS */
+    .stats{padding:48px 0;background:var(--white);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+    .stat{text-align:center}
+    .stat-v{font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--primary)}
+    .stat-l{font-size:13px;color:var(--text-3);margin-top:2px}
+
+    /* SECTIONS */
+    .section{padding:96px 0}
+    .section-header{text-align:center;margin-bottom:56px}
+    .section-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--primary);margin-bottom:12px}
+    .section-title{font-size:36px;font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:12px}
+    .section-desc{font-size:16px;color:var(--text-3);max-width:480px;margin:0 auto}
+
+    /* PRODUCTS */
+    .products{background:var(--white)}
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .product-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 24px;text-align:center;transition:var(--t);position:relative;cursor:pointer}
+    .product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+    .product-badge{position:absolute;top:16px;right:16px;background:var(--cta);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px}
+    .product-img{width:120px;height:140px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:var(--r)}
+    .product-img img{max-height:140px;width:auto;object-fit:contain}
+    .product-card h3{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--text)}
+    .product-card .desc{font-size:13px;color:var(--text-3);margin-bottom:16px;line-height:1.5}
+    .product-price{font-size:26px;font-weight:800;color:var(--primary);margin-bottom:16px;letter-spacing:-.5px}
+    .product-price small{font-size:13px;font-weight:500;color:var(--text-4)}
+    .product-note{font-size:11px;color:var(--text-4);margin-bottom:14px}
+
+    /* CATALOG TABS */
+    .catalog-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+    .cat-tab{padding:8px 20px;border-radius:100px;font-size:14px;font-weight:600;color:var(--text-2);background:var(--bg);border:1.5px solid var(--border);cursor:pointer;transition:var(--t)}
+    .cat-tab:hover{border-color:var(--primary-light);color:var(--primary)}
+    .cat-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .catalog-group{display:none}
+    .catalog-group.active{display:grid}
+
+    /* BENEFITS */
+    .benefits{background:var(--white)}
+    .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .benefit-card{padding:28px;border-radius:var(--r-lg);border:1px solid var(--border-light);background:var(--bg);transition:var(--t)}
+    .benefit-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow);background:var(--white)}
+    .benefit-icon{width:44px;height:44px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .bi-blue{background:rgba(59,130,246,.1);color:var(--primary)}
+    .bi-cyan{background:rgba(6,182,212,.1);color:var(--secondary)}
+    .bi-amber{background:rgba(245,158,11,.1);color:#D97706}
+    .bi-green{background:rgba(34,197,94,.1);color:#16A34A}
+    .bi-violet{background:rgba(139,92,246,.1);color:#7C3AED}
+    .bi-rose{background:rgba(244,63,94,.1);color:#E11D48}
+    .benefit-card h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .benefit-card p{font-size:13px;color:var(--text-3);line-height:1.6}
+
+    /* STEPS */
+    .steps-section{background:var(--bg)}
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+    .steps-grid::before{content:'';position:absolute;top:32px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--primary-light),var(--secondary),var(--primary-light));opacity:.3}
+    .step-item{text-align:center;position:relative;z-index:1}
+    .step-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 12px rgba(59,130,246,.3)}
+    .step-item h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .step-item p{font-size:13px;color:var(--text-3);line-height:1.5}
+
+    /* ORDER */
+    .order{background:linear-gradient(135deg,#1E40AF,#0F172A);color:#fff;position:relative;overflow:hidden}
+    .order::before{content:'';position:absolute;top:-40%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,.12),transparent 70%);border-radius:50%}
+    .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+    .order-info h2{font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:14px;line-height:1.15}
+    .order-info>p{font-size:16px;color:rgba(191,219,254,.9);margin-bottom:28px;line-height:1.7}
+    .check-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .check-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(219,234,254,.9)}
+    .check-list li svg{flex-shrink:0;color:var(--secondary)}
+    .form-card{background:var(--white);border-radius:var(--r-xl);padding:36px;box-shadow:var(--shadow-xl)}
+    .form-card h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:24px}
+    .field{margin-bottom:16px}
+    .field label{display:block;font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+    .field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;font-family:inherit;color:var(--text);background:var(--bg);transition:var(--t)}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary);background:var(--white);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+    .field textarea{resize:vertical;min-height:72px}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* STORES */
+    .stores{background:var(--bg)}
+    .stores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .store-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--r);padding:18px 20px;display:flex;align-items:center;gap:14px;transition:var(--t)}
+    .store-card:hover{border-color:var(--primary-light);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+    .store-pin{flex-shrink:0;width:40px;height:40px;border-radius:var(--r-sm);background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;color:var(--primary)}
+    .store-card h4{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+    .store-card p{font-size:12px;color:var(--text-4)}
+
+    /* CTA */
+    .cta-banner{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:72px 0;text-align:center;color:#fff;position:relative;overflow:hidden}
+    .cta-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='2' fill='white' fill-opacity='.06'/%3E%3C/svg%3E")}
+    .cta-banner h2{font-size:32px;font-weight:800;letter-spacing:-.5px;margin-bottom:12px;position:relative}
+    .cta-banner p{font-size:16px;opacity:.9;margin-bottom:28px;position:relative}
+
+    /* FOOTER */
+    .footer{background:#0B1120;color:var(--text-4);padding:56px 0 28px}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+    .footer-brand .logo-type{color:#fff}
+    .footer-brand>p{font-size:13px;line-height:1.7;margin-top:14px;color:var(--text-3)}
+    .footer-socials{display:flex;gap:8px;margin-top:16px}
+    .footer-socials a{width:36px;height:36px;border-radius:var(--r-sm);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:var(--text-4);transition:var(--t);cursor:pointer;font-size:12px;font-weight:600}
+    .footer-socials a:hover{background:var(--primary);color:#fff}
+    .footer h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:16px}
+    .footer ul{list-style:none}
+    .footer ul li{margin-bottom:10px}
+    .footer ul a{font-size:13px;color:var(--text-3);transition:var(--t);cursor:pointer}
+    .footer ul a:hover{color:var(--primary-light)}
+    .footer-bottom{padding-top:20px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;font-size:12px;color:rgba(100,116,139,.6)}
+
+    /* MOBILE NAV */
+    .mobile-nav{display:none;position:fixed;top:88px;left:16px;right:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;box-shadow:var(--shadow-xl);z-index:999;flex-direction:column;gap:4px}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{padding:12px 16px;font-size:15px;font-weight:500;color:var(--text-2);border-radius:var(--r-sm);cursor:pointer}
+    .mobile-nav a:hover{background:var(--bg);color:var(--primary)}
+
+    /* MODAL */
+    .overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(6px);z-index:2000;align-items:center;justify-content:center;padding:24px}
+    .overlay.open{display:flex}
+    .modal{background:var(--white);border-radius:var(--r-xl);padding:36px;max-width:440px;width:100%;position:relative;box-shadow:var(--shadow-xl);animation:mIn 300ms ease}
+    @keyframes mIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .modal-x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:var(--t)}
+    .modal-x:hover{background:var(--border)}
+    .modal h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:20px}
+    .success-state{text-align:center;padding:16px 0}
+    .success-state h3{text-align:center;margin-bottom:8px}
+    .success-state p{color:var(--text-3);font-size:14px}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .hero h1{font-size:38px}.section-title{font-size:30px}
+      .products-grid,.benefits-grid{grid-template-columns:repeat(2,1fr)}
+      .stores-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:768px){
+      .header{top:8px;left:8px;right:8px}.nav,.header-phone{display:none}.burger{display:block}
+      .hero{padding:112px 0 56px}.hero-grid{grid-template-columns:1fr;text-align:center}
+      .hero h1{font-size:32px}.hero-desc{margin:0 auto 28px}.hero-actions{justify-content:center}
+      .hero-visual{display:none}
+      .stats-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+      .products-grid,.benefits-grid,.stores-grid{grid-template-columns:1fr}
+      .products-grid{max-width:380px;margin:0 auto}
+      .steps-grid{grid-template-columns:repeat(2,1fr)}.steps-grid::before{display:none}
+      .order-grid{grid-template-columns:1fr}.order-info{text-align:center}.check-list{align-items:center}
+      .footer-grid{grid-template-columns:1fr;text-align:center}.footer-socials{justify-content:center}
+      .footer-bottom{flex-direction:column;gap:6px;text-align:center}
+      .field-row{grid-template-columns:1fr}.section{padding:64px 0}
+    }
+    @media(max-width:480px){
+      .hero h1{font-size:28px}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}
+      .steps-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a class="logo" href="#">
+        <img src="https://a-tel.ru/wa-data/public/site/themes/akvatel/img/logo60.png" alt="Акватель" height="40">
+      </a>
+
+      <nav class="nav">
+        <a href="#products">Каталог</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#how">Доставка</a>
+        <a href="#stores">Магазины</a>
+        <a href="#order">Заказать</a>
+      </nav>
+
+      <div class="header-right">
+        <a href="tel:+73452278877" class="header-phone">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (3452) 27-88-77
+        </a>
+        <button class="btn btn-cta" onclick="openModal()" style="padding:10px 20px">Заказать воду</button>
+      </div>
+
+      <button class="burger" onclick="toggleNav()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#products" onclick="closeNav()">Каталог</a>
+    <a href="#benefits" onclick="closeNav()">Преимущества</a>
+    <a href="#how" onclick="closeNav()">Доставка</a>
+    <a href="#stores" onclick="closeNav()">Магазины</a>
+    <a href="#order" onclick="closeNav()">Заказать</a>
+    <a href="tel:+73452278877">+7 (3452) 27-88-77</a>
+    <a href="tel:+73452687068">+7 (3452) 68-70-68</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-orb o1"></div>
+    <div class="hero-orb o2"></div>
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          Доставка воды в Тюмени
+        </div>
+        <h1>Пейте с<br>удовольствием —<br>пейте <span class="g">Акватель</span></h1>
+        <p class="hero-desc">100% натуральная физиологически активная питьевая вода. Стабильный состав круглый год. Доставим в день заказа.</p>
+        <div class="hero-actions">
+          <button class="btn btn-cta btn-lg" onclick="openModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Заказать воду
+          </button>
+          <a href="#products" class="btn btn-outline btn-lg">Смотреть каталог</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-ring"></div>
+        <div class="hero-bottle">
+          <svg width="260" viewBox="0 0 220 420" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bottle-body" x1="0" y1="0" x2=".3" y2="1">
+                <stop offset="0%" stop-color="#E8F4FE"/>
+                <stop offset="50%" stop-color="#D0EAFC"/>
+                <stop offset="100%" stop-color="#B8DFFA"/>
+              </linearGradient>
+              <linearGradient id="water-fill" x1="0" y1="0" x2=".5" y2="1">
+                <stop offset="0%" stop-color="#60A5FA"/>
+                <stop offset="100%" stop-color="#0EA5E9"/>
+              </linearGradient>
+              <linearGradient id="cap-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3B82F6"/>
+                <stop offset="100%" stop-color="#2563EB"/>
+              </linearGradient>
+              <linearGradient id="neck-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#DBEAFE"/>
+                <stop offset="100%" stop-color="#C5D9F5"/>
+              </linearGradient>
+              <linearGradient id="handle-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#BFDBFE"/>
+                <stop offset="100%" stop-color="#93C5FD"/>
+              </linearGradient>
+              <radialGradient id="shine" cx=".3" cy=".3" r=".7">
+                <stop offset="0%" stop-color="white" stop-opacity=".35"/>
+                <stop offset="100%" stop-color="white" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Shadow -->
+            <ellipse cx="110" cy="408" rx="60" ry="8" fill="rgba(59,130,246,.08)"/>
+
+            <!-- Cap -->
+            <rect x="90" y="8" width="40" height="14" rx="4" fill="url(#cap-grad)"/>
+            <rect x="94" y="10" width="32" height="3" rx="1.5" fill="rgba(255,255,255,.3)"/>
+
+            <!-- Neck ring -->
+            <ellipse cx="110" cy="24" rx="22" ry="4" fill="#93C5FD"/>
+            <ellipse cx="110" cy="23" rx="20" ry="3" fill="#BFDBFE"/>
+
+            <!-- Neck -->
+            <path d="M88 24 L88 50 Q88 56 84 62 L76 76 Q72 82 72 90 L72 98" fill="url(#neck-grad)" stroke="#93C5FD" stroke-width=".8"/>
+            <path d="M132 24 L132 50 Q132 56 136 62 L144 76 Q148 82 148 90 L148 98" fill="url(#neck-grad)" stroke="#93C5FD" stroke-width=".8"/>
+            <rect x="88" y="24" width="44" height="28" fill="url(#neck-grad)"/>
+
+            <!-- Handle -->
+            <path d="M132 32 Q156 32 156 52 Q156 68 140 72" fill="none" stroke="url(#handle-grad)" stroke-width="7" stroke-linecap="round"/>
+            <path d="M132 32 Q152 32 152 50 Q152 64 140 68" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Body -->
+            <path d="M64 98 Q58 98 54 106 Q48 118 48 140 L48 360 Q48 395 80 395 L140 395 Q172 395 172 360 L172 140 Q172 118 166 106 Q162 98 156 98 Z" fill="url(#bottle-body)" stroke="#93C5FD" stroke-width="1"/>
+
+            <!-- Water -->
+            <path d="M53 200 Q80 190 110 200 Q140 210 167 200 L167 360 Q167 390 140 390 L80 390 Q53 390 53 360 Z" fill="url(#water-fill)" opacity=".5"/>
+
+            <!-- Water surface wave -->
+            <path d="M53 200 Q80 190 110 200 Q140 210 167 200" fill="none" stroke="rgba(96,165,250,.4)" stroke-width="1.5"/>
+
+            <!-- Bubbles -->
+            <circle cx="90" cy="300" r="4" fill="rgba(255,255,255,.3)"/>
+            <circle cx="130" cy="270" r="3" fill="rgba(255,255,255,.25)"/>
+            <circle cx="100" cy="340" r="2.5" fill="rgba(255,255,255,.2)"/>
+            <circle cx="120" cy="320" r="2" fill="rgba(255,255,255,.25)"/>
+            <circle cx="85" cy="250" r="1.5" fill="rgba(255,255,255,.2)"/>
+
+            <!-- Shine/reflection -->
+            <path d="M68 110 Q72 220 66 340" stroke="white" stroke-width="4" opacity=".25" fill="none" stroke-linecap="round"/>
+            <path d="M76 115 Q78 180 76 230" stroke="white" stroke-width="2" opacity=".15" fill="none" stroke-linecap="round"/>
+
+            <!-- Label -->
+            <rect x="70" y="230" width="80" height="80" rx="10" fill="white" opacity=".92" filter="url(#glow)"/>
+            <rect x="70" y="230" width="80" height="80" rx="10" fill="none" stroke="rgba(59,130,246,.15)" stroke-width="1"/>
+
+            <!-- Label text -->
+            <text x="110" y="258" text-anchor="middle" fill="#1E3A5F" font-family="DM Sans,sans-serif" font-size="16" font-weight="800">АКВА</text>
+            <text x="110" y="278" text-anchor="middle" fill="#3B82F6" font-family="DM Sans,sans-serif" font-size="16" font-weight="800">ТЕЛЬ</text>
+            <line x1="86" y1="285" x2="134" y2="285" stroke="rgba(59,130,246,.2)" stroke-width="1"/>
+            <text x="110" y="298" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,sans-serif" font-size="9" font-weight="500">19 литров</text>
+            <text x="110" y="308" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,sans-serif" font-size="7">природная вода</text>
+
+            <!-- Bottom ridge lines -->
+            <path d="M58 380 Q110 386 162 380" fill="none" stroke="rgba(147,197,253,.4)" stroke-width=".8"/>
+            <path d="M56 370 Q110 376 164 370" fill="none" stroke="rgba(147,197,253,.3)" stroke-width=".6"/>
+          </svg>
+        </div>
+        <div class="glass-card gc1">
+          <div class="gc-i blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="gc-t">Доставка сегодня<small>ПН-ПТ 09:00 — 22:00</small></div>
+        </div>
+        <div class="glass-card gc2">
+          <div class="gc-i green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="gc-t">Сертифицировано<small>EBWA, Союз производителей</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat"><div class="stat-v">15+</div><div class="stat-l">лет на рынке</div></div>
+      <div class="stat"><div class="stat-v">5</div><div class="stat-l">магазинов в Тюмени</div></div>
+      <div class="stat"><div class="stat-v">EBWA</div><div class="stat-l">член ассоциации</div></div>
+      <div class="stat"><div class="stat-v">24/7</div><div class="stat-l">приём заказов</div></div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          Каталог
+        </div>
+        <h2 class="section-title">Наша продукция</h2>
+        <p class="section-desc">Природная питьевая вода и оборудование для дома и офиса</p>
+      </div>
+
+      <div class="catalog-tabs">
+        <button class="cat-tab active" onclick="showTab('water',this)">Вода</button>
+        <button class="cat-tab" onclick="showTab('coolers',this)">Кулеры</button>
+        <button class="cat-tab" onclick="showTab('pumps',this)">Помпы</button>
+      </div>
+
+      <!-- Water -->
+      <div class="catalog-group active" id="tab-water">
+        <div class="products-grid">
+          <div class="product-card" onclick="openModal()">
+            <div class="product-badge">Хит</div>
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/84/06/684/images/1245/1245.376.jpg" alt="Акватель 19л">
+            </div>
+            <h3>Акватель, 19 л</h3>
+            <p class="desc">Природная питьевая вода в бутыли для кулера. Скидка от 2 шт.</p>
+            <div class="product-price">460 <small>&#8381;</small></div>
+            <p class="product-note">* Без стоимости обменной бутыли</p>
+            <button class="btn btn-cta btn-full">Заказать</button>
+          </div>
+
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/70/16/1670/images/1697/1697.376.jpeg" alt="Акватель Лайт 19л">
+            </div>
+            <h3>Акватель Лайт, 19 л</h3>
+            <p class="desc">Менделеевская природная вода. Скидка от 2 шт.</p>
+            <div class="product-price">400 <small>&#8381;</small></div>
+            <p class="product-note">* Без стоимости обменной бутыли</p>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/96/14/1496/images/1536/1536.376.jpg" alt="Акватель Лайт 5л">
+            </div>
+            <h3>Акватель Лайт, 5 л</h3>
+            <p class="desc">Питьевая вода в удобной упаковке. Заказ от 4 шт.</p>
+            <div class="product-price">120 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/47/16/1647/images/1671/1671.376.jpg" alt="Акватель 0.6л">
+            </div>
+            <h3>Акватель, 0.6 л (12 шт)</h3>
+            <p class="desc">Упаковка 12 бутылок. Удобно в дорогу и на мероприятия.</p>
+            <div class="product-price">60 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/43/08/843/images/1248/1248.376.jpg" alt="Кристаллинка 5л">
+            </div>
+            <h3>Кристаллинка, 5 л</h3>
+            <p class="desc">Техническая вода для бытовых нужд.</p>
+            <div class="product-price">100 <small>&#8381;</small></div>
+            <button class="btn btn-outline btn-full">Заказать</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coolers -->
+      <div class="catalog-group" id="tab-coolers">
+        <div class="products-grid">
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/00/16/1600/images/1753/1753.376.jpg" alt="Раздатчик Lagretti Turin">
+            </div>
+            <h3>Раздатчик Lagretti Turin</h3>
+            <p class="desc">Настольный раздатчик воды без нагрева и охлаждения.</p>
+            <div class="product-price">1 500 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/36/14/1436/images/1806/1806.376.jpg" alt="Кулер TK-AEL-107">
+            </div>
+            <h3>Кулер TK-AEL-107</h3>
+            <p class="desc">Напольный кулер без охлаждения. Компактный дизайн.</p>
+            <div class="product-price">3 900 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-badge">Популярный</div>
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/59/13/1359/images/1802/1802.376.jpg" alt="Кулер APEXCOOL 26TD">
+            </div>
+            <h3>Кулер APEXCOOL 26TD</h3>
+            <p class="desc">Напольный кулер с нагревом и охлаждением.</p>
+            <div class="product-price">6 500 <small>&#8381;</small></div>
+            <button class="btn btn-cta btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/58/12/1258/images/1709/1709.376.jpg" alt="Кулер Ecotronic A1-TN">
+            </div>
+            <h3>Кулер Ecotronic A1-TN</h3>
+            <p class="desc">Напольный кулер с нагревом. Надёжная конструкция.</p>
+            <div class="product-price">5 600 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/91/14/1491/images/1530/1530.376.jpg" alt="Кулер Ecotronic V33-LCE">
+            </div>
+            <h3>Кулер Ecotronic V33-LCE</h3>
+            <p class="desc">Премиум кулер с электронным охлаждением.</p>
+            <div class="product-price">14 900 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img">
+              <img src="https://a-tel.ru/wa-data/public/shop/products/89/11/1189/images/1724/1724.376.jpg" alt="Кулер VATTEN kids Mouse">
+            </div>
+            <h3>Кулер VATTEN kids Mouse</h3>
+            <p class="desc">Детский кулер в форме мышки. Весело и безопасно.</p>
+            <div class="product-price">1 750 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pumps -->
+      <div class="catalog-group" id="tab-pumps">
+        <div class="products-grid">
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img" style="background:#F8FAFC;border-radius:12px">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <h3>Помпа механическая МР-01</h3>
+            <p class="desc">Простая и надёжная механическая помпа.</p>
+            <div class="product-price">350 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-badge">Хит</div>
+            <div class="product-img" style="background:#F8FAFC;border-radius:12px">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Электрическая «Смарт»</h3>
+            <p class="desc">Электрическая помпа с USB-зарядкой. Чёрная / Белая.</p>
+            <div class="product-price">1 500 <small>&#8381;</small></div>
+            <button class="btn btn-cta btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img" style="background:#F8FAFC;border-radius:12px">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+            </div>
+            <h3>Аккумуляторная PLR-640</h3>
+            <p class="desc">Ecotronic PLR-640. Встроенный аккумулятор, LED-индикатор.</p>
+            <div class="product-price">1 600 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img" style="background:#F8FAFC;border-radius:12px">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <h3>Помпа «Кама-норма»</h3>
+            <p class="desc">Механическая помпа с увеличенным ресурсом.</p>
+            <div class="product-price">450 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img" style="background:#F8FAFC;border-radius:12px">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Электрическая «Элеганс»</h3>
+            <p class="desc">Стильная электрическая помпа с сенсорным управлением.</p>
+            <div class="product-price">1 500 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+          <div class="product-card" onclick="openModal()">
+            <div class="product-img" style="background:#F8FAFC;border-radius:12px">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <h3>Помпа-подставка PLR-250</h3>
+            <p class="desc">Ecotronic. Помпа со встроенной подставкой.</p>
+            <div class="product-price">1 200 <small>&#8381;</small></div>
+            <button class="btn btn-primary btn-full">Заказать</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section benefits" id="benefits">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Преимущества
+        </div>
+        <h2 class="section-title">Почему выбирают Акватель</h2>
+        <p class="section-desc">Член Союза производителей бутилированных вод России и EBWA</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon bi-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+          <h3>Натуральная вода</h3>
+          <p>100% природная артезианская вода. Физиологически активная, стабильный состав круглый год.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon bi-amber"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3>Быстрая доставка</h3>
+          <p>Доставка в день заказа по Тюмени. ПН-ПТ 09:00-22:00, СБ-ВС 09:00-20:00.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon bi-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3>Сертифицировано</h3>
+          <p>Полное соответствие ГОСТ. Регулярные лабораторные проверки качества.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon bi-violet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3>Сервис оборудования</h3>
+          <p>Сертифицированный ремонт и обслуживание кулеров. Быстрая замена при поломке.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon bi-rose"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Выгодные цены</h3>
+          <p>Собственная производственная база и логистика. Скидки от 2 бутылей.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon bi-cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>5 магазинов</h3>
+          <p>Фирменные магазины по Тюмени. Самовывоз ежедневно с 8:00.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="section steps-section" id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Доставка
+        </div>
+        <h2 class="section-title">Как заказать воду</h2>
+        <p class="section-desc">4 простых шага</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-item"><div class="step-num">1</div><h3>Оставьте заявку</h3><p>Позвоните, заполните форму или напишите в Telegram</p></div>
+        <div class="step-item"><div class="step-num">2</div><h3>Подтверждение</h3><p>Оператор уточнит детали и время доставки</p></div>
+        <div class="step-item"><div class="step-num">3</div><h3>Доставка</h3><p>Курьер привезёт воду в выбранный интервал</p></div>
+        <div class="step-item"><div class="step-num">4</div><h3>Готово!</h3><p>Наслаждайтесь чистой природной водой</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Form -->
+  <section class="section order" id="order">
+    <div class="container order-grid">
+      <div class="order-info">
+        <h2>Оформите заказ<br>прямо сейчас</h2>
+        <p>Заполните форму и мы свяжемся в течение 15 минут.</p>
+        <ul class="check-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Доставка в день заказа</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Скидки от 2 бутылей</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Оплата наличными или картой</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Обмен пустых бутылей</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <h3>Форма заказа</h3>
+        <form id="orderForm" onsubmit="submitOrder(event)">
+          <div class="field-row">
+            <div class="field"><label for="fn">Имя</label><input type="text" id="fn" placeholder="Ваше имя" required></div>
+            <div class="field"><label for="fp">Телефон</label><input type="tel" id="fp" placeholder="+7 (___) ___-__-__" required></div>
+          </div>
+          <div class="field"><label for="fa">Адрес доставки</label><input type="text" id="fa" placeholder="Улица, дом, квартира" required></div>
+          <div class="field-row">
+            <div class="field"><label for="fq">Товар</label>
+              <select id="fq">
+                <option>Акватель 19л — 460 &#8381;</option>
+                <option>Акватель Лайт 19л — 400 &#8381;</option>
+                <option>Акватель Лайт 5л — 120 &#8381;</option>
+                <option>Акватель 0.6л (12шт) — 60 &#8381;</option>
+              </select>
+            </div>
+            <div class="field"><label for="ft">Удобное время</label>
+              <select id="ft">
+                <option>09:00 — 14:00</option>
+                <option>14:00 — 18:00</option>
+                <option>19:00 — 22:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="fc">Комментарий</label><textarea id="fc" placeholder="Количество, код домофона, этаж..."></textarea></div>
+          <button type="submit" class="btn btn-cta btn-lg btn-full" style="margin-top:4px">Оформить заказ</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stores -->
+  <section class="section stores" id="stores">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Магазины</div>
+        <h2 class="section-title">Фирменные магазины</h2>
+        <p class="section-desc">Заберите воду самовывозом из ближайшего магазина</p>
+      </div>
+      <div class="stores-grid">
+        <div class="store-card">
+          <div class="store-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>ул. В. Гнаровской, 12 корп. 4</h4><p>8:00 — 20:00, ежедневно</p></div>
+        </div>
+        <div class="store-card">
+          <div class="store-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>ул. Ямская, 94г</h4><p>8:00 — 20:00, ежедневно</p></div>
+        </div>
+        <div class="store-card">
+          <div class="store-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>ул. Розы Трениной, 3 (ТЦ Мегамарт)</h4><p>9:00 — 21:00, ежедневно</p></div>
+        </div>
+        <div class="store-card">
+          <div class="store-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Ледниковый проезд, 1</h4><p>9:00 — 21:00, ежедневно</p></div>
+        </div>
+        <div class="store-card">
+          <div class="store-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>ул. Заречный проезд, 14</h4><p>8:00 — 20:00, ежедневно</p></div>
+        </div>
+        <div class="store-card">
+          <div class="store-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Центральный офис</h4><p>ул. Одесская, 9 &middot; office@a-tel.ru</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Пейте с удовольствием — пейте Акватель!</h2>
+      <p>Закажите воду с доставкой прямо сейчас</p>
+      <button class="btn btn-ghost btn-lg" onclick="openModal()" style="position:relative">Заказать доставку</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="https://a-tel.ru/wa-data/public/site/themes/akvatel/img/logo60.png" alt="Акватель" height="36" style="filter:brightness(10)">
+          </div>
+          <p>Природная питьевая вода с доставкой по Тюмени. Член Союза производителей бутилированных вод России и EBWA.</p>
+          <div class="footer-socials">
+            <a href="https://vk.com/akvateltmn" target="_blank" rel="noopener" aria-label="VKontakte">VK</a>
+            <a href="https://t.me/akvateltmn" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+          </div>
+        </div>
+        <div>
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="#products">Каталог</a></li>
+            <li><a href="#benefits">Преимущества</a></li>
+            <li><a href="#how">Доставка</a></li>
+            <li><a href="#stores">Магазины</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Услуги</h4>
+          <ul>
+            <li><a href="#">Доставка воды</a></li>
+            <li><a href="#">Кулеры и помпы</a></li>
+            <li><a href="#">Ремонт оборудования</a></li>
+            <li><a href="#">Корпоративным клиентам</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <ul>
+            <li><a href="tel:+73452278877">+7 (3452) 27-88-77</a></li>
+            <li><a href="tel:+73452687068">+7 (3452) 68-70-68</a></li>
+            <li><a href="mailto:office@a-tel.ru">office@a-tel.ru</a></li>
+            <li><a href="https://wa.me/79224826444">WhatsApp: +7 922 482-64-44</a></li>
+            <li><a href="#">г. Тюмень, ул. Одесская, 9</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Акватель. Все права защищены.</span>
+        <span>625023, г. Тюмень, ул. Одесская, дом 9</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal()" aria-label="Закрыть">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const header=document.getElementById('header');
+    window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>20)},{passive:true});
+
+    function toggleNav(){document.getElementById('mobileNav').classList.toggle('open')}
+    function closeNav(){document.getElementById('mobileNav').classList.remove('open')}
+
+    // Tabs
+    function showTab(id,btn){
+      document.querySelectorAll('.catalog-group').forEach(g=>g.classList.remove('active'));
+      document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+      document.getElementById('tab-'+id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // Modal
+    function openModal(){
+      document.getElementById('overlay').classList.add('open');
+      document.body.style.overflow='hidden';
+      document.getElementById('modalBody').innerHTML=`
+        <h3>\u0411\u044b\u0441\u0442\u0440\u044b\u0439 \u0437\u0430\u043a\u0430\u0437</h3>
+        <form onsubmit="quickOrder(event)">
+          <div class="field"><label>\u0418\u043c\u044f</label><input type="text" placeholder="\u0412\u0430\u0448\u0435 \u0438\u043c\u044f" required></div>
+          <div class="field"><label>\u0422\u0435\u043b\u0435\u0444\u043e\u043d</label><input type="tel" placeholder="+7 (___) ___-__-__" required></div>
+          <div class="field"><label>\u0422\u043e\u0432\u0430\u0440</label>
+            <select>
+              <option>\u0410\u043a\u0432\u0430\u0442\u0435\u043b\u044c 19\u043b \u2014 460 \u20BD</option>
+              <option>\u0410\u043a\u0432\u0430\u0442\u0435\u043b\u044c \u041b\u0430\u0439\u0442 19\u043b \u2014 400 \u20BD</option>
+              <option>\u0410\u043a\u0432\u0430\u0442\u0435\u043b\u044c \u041b\u0430\u0439\u0442 5\u043b \u2014 120 \u20BD</option>
+              <option>\u0410\u043a\u0432\u0430\u0442\u0435\u043b\u044c 0.6\u043b (12\u0448\u0442) \u2014 60 \u20BD</option>
+              <option>\u041a\u0443\u043b\u0435\u0440 / \u041f\u043e\u043c\u043f\u0430</option>
+            </select>
+          </div>
+          <div class="field"><label>\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439</label><textarea placeholder="\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0430\u0434\u0440\u0435\u0441, \u043f\u043e\u0436\u0435\u043b\u0430\u043d\u0438\u044f..." rows="2"></textarea></div>
+          <button type="submit" class="btn btn-cta btn-lg btn-full" style="margin-top:4px">\u0417\u0430\u043a\u0430\u0437\u0430\u0442\u044c</button>
+        </form>`;
+    }
+    function closeModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow=''}
+    function showSuccess(el){
+      el.innerHTML=`<div class="success-state">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 10 10.5 15.5 8 13"/></svg>
+        <h3>\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u0437\u0430\u043a\u0430\u0437!</h3>
+        <p>\u041c\u044b \u0441\u0432\u044f\u0436\u0435\u043c\u0441\u044f \u0441 \u0432\u0430\u043c\u0438 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 15 \u043c\u0438\u043d\u0443\u0442</p></div>`;
+    }
+    function quickOrder(e){e.preventDefault();showSuccess(document.getElementById('modalBody'))}
+    function submitOrder(e){e.preventDefault();showSuccess(e.target.parentElement)}
+
+    // Phone mask
+    document.addEventListener('input',e=>{
+      if(e.target.type!=='tel')return;
+      let v=e.target.value.replace(/\D/g,'');
+      if(v.startsWith('8'))v='7'+v.slice(1);
+      if(!v.startsWith('7')&&v.length>0)v='7'+v;
+      let f='';
+      if(v.length>0)f='+7';
+      if(v.length>1)f+=' ('+v.slice(1,4);
+      if(v.length>4)f+=') '+v.slice(4,7);
+      if(v.length>7)f+='-'+v.slice(7,9);
+      if(v.length>9)f+='-'+v.slice(9,11);
+      e.target.value=f;
+    });
+
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  </script>
+</body>
+</html>
